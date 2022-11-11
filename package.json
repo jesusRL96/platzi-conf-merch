@@ -5,13 +5,25 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "Webpack serve --mode development",
-    "build": "Webpack --mode production"
+    "build": "Webpack --mode production",
+    "format": "prettier --write '{*.js,src/**/*.{js,jsx}}'",
+    "format_w": "prettier --write \"{*.js,src/**/*.{js,jsx}}\"",
+    "lint": "eslint src/ --fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@babel/eslint-parser": "^7.19.1",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.27.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -24,7 +36,9 @@
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",
-    "prettier": "2.7.1",
+    "node-sass": "^8.0.0",
+    "prettier": "^2.7.1",
+    "sass-loader": "^13.2.0",
     "webpack": "^5.75.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1"
