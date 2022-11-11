@@ -14,4 +14,6 @@ npm install -g eslint
 npm install eslint babel-eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
 npm install @babel/eslint-parser
 npm install prettier eslint-plugin-prettier eslint-config-prettier
+
+npm install react-router-dom --save
 ```
