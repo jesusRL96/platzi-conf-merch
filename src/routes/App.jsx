@@ -12,16 +12,16 @@ import Layout from '../components/Layout';
 const App = () => {
   return (
     <BrowserRouter>
-			<Layout>
-				<Routes>
-					<Route exact path="/" element={<Home />} />
-					<Route exact path="/checkout" element={<Checkout />} />
-					<Route exact path="/checkout/informacion" element={<Information />} />
-					<Route exact path="/checkout/payment" element={<Payment />} />
-					<Route exact path="/checkout/success" element={<Success />} />
-					<Route exact path='*' element={<NotFound />} />
-				</Routes>
-			</Layout>
+      <Layout>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/checkout" element={<Checkout />} />
+          <Route exact path="/checkout/informacion" element={<Information />} />
+          <Route exact path="/checkout/payment" element={<Payment />} />
+          <Route exact path="/checkout/success" element={<Success />} />
+          <Route exact path="*" element={<NotFound />} />
+        </Routes>
+      </Layout>
     </BrowserRouter>
   );
 };
