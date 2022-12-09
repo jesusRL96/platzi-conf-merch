@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import '../styles/components/Payment.css';
 import AppContext from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
-import { PayPalButton } from 'react-paypal-button';
+import { PayPalButton } from 'react-paypal-button-v2';
 
 const Payment = () => {
   const { state, addNewOrder } = useContext(AppContext);
@@ -16,7 +16,7 @@ const Payment = () => {
   };
 
   const buttonStyles = {
-    layout: vertical,
+    layout: 'vertical',
     shape: 'rect',
   };
 
@@ -28,10 +28,28 @@ const Payment = () => {
         product: cart,
         payment: data,
       };
-      addNewOrder(newOrde);
-      navigation('/checkout/success');
+      addNewOrder(newOrder);
+      navigate('/checkout/success');
     }
   };
+	
+
+	const createOrder = (data, actions) => {
+			return actions.order.create({
+				purchase_units: [
+					{
+						amount: {
+							value: handleSumtotal()
+						},
+					},
+				],
+			});
+		};
+	const onApprove = (data, actions) => {
+		return actions.order.capture().then(function(data) {
+		handlePaymentSuccess(data);
+					 });
+	};
 
   const handleSumtotal = () => {
     const reducer = (accumulator, currentValue) =>
@@ -55,12 +73,13 @@ const Payment = () => {
         <div className="Payment-button">
           <PayPalButton
             paypalOptions={paypalOptions}
-            buttonStyle={buttonStyles}
-            amout={handleSumtotal()}
-            onPaymentStart={() => console.log('start payment')}
-            onPaymentSuccess={(data) => handlePaymentSuccess(data)}
-            onPaymentError={(error) => console.log(error)}
-            onPaymentCancel={(data) => console.log(data)}
+            buttonStyles={buttonStyles}
+            /* amout={handleSumtotal()} */
+						createOrder={(data, actions) => createOrder(data, actions)}
+						onApprove={(data, actions) => onApprove(data, actions)}
+            onSuccess={(data) => handlePaymentSuccess(data)}
+            onError={(error) => console.log(error)}
+            onCancel={(data) => console.log(data)}
           />
         </div>
       </div>
